@@ -7,7 +7,7 @@ export const findCell = (x: number, y: number, field: Field): Cell | null => {
   return field[y][x];
 };
 
-export const FieldSizeInit = { width: 10, height: 20 };
+export const FieldSizeInit = { width: 20, height: 20 };
 
 // The coordinate offsets of all cells around the cell [y, x].
 export const mapPosNearbyCells = [
@@ -29,7 +29,7 @@ export const makeField = (width: number, height: number) => {
       return ({
         x: cellI,
         y: rowI,
-        withBomb: randNum < 300 && randNum > 200,
+        withBomb: randNum < 400 && randNum > 200,
         open: false,
         bombsNearby: 0,
         flag: false,
