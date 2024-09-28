@@ -1,5 +1,20 @@
+@use 'sass:map';
+@import '../../variables';
+
+$bombs-count-colors: (
+    '1': 'blue',
+    '2': 'green',
+    '3': 'red',
+    '4': 'darkblue',
+    '5': 'gold',
+    '6': 'lightblue',
+    '7': 'blueviolet',
+    '8': 'darkorange',
+    '9': 'black'
+);
+
 .cell {
-    border: 1px solid rgba(0, 0, 0, 0.35);
+    border: 1px solid darkgrey;
     user-select: none;
     width: 25px;
     max-width: 25px;
@@ -9,11 +24,15 @@
     cursor: pointer;
     text-align: center;
     font-weight: 700;
+    background-color: $cell-color;
+}
+
+.cell:not(._open) {
+    box-shadow: inset 3px 3px 1px white, inset -3px -3px 1px #c5c5c5;
 }
 
 .cell._open {
     cursor: default;
-    background-color: bisque;
 }
 
 .cell._bomb._open {
@@ -22,9 +41,10 @@
     background-repeat: no-repeat;
 }
 
-.cell._open._bombs-nearby {
-    color: #f5f5f5;
-    background-color: firebrick;
+@each $number, $color in $bombs-count-colors {
+    .cell._open._bombs-nearby[data-bombs-nearby='#{$number}'] {
+        color: #{$color};
+    }
 }
 
 .cell._flag {

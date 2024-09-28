@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import GameField from '../GameField/GameField';
 import { makeField, openNearbyEmptyCell, FieldSizeInit, findCell } from '../../utils';
 import { Cell, Field } from '../../types';
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
+      <header></header>
       <main>
         <GameField field={field} onCellClick={handleCellClick}></GameField>
       </main>

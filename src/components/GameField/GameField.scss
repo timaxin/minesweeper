@@ -1,0 +1,14 @@
+.fieldContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field {
+    display: inline-block;
+    border: 2px solid darkgrey;
+}
+
+.row {
+    display: flex;
+}

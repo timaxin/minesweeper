@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cell } from '../../types';
-import './FieldCell.css';
+import './FieldCell.scss';
 
 const FieldCell: React.FC<{
   cell: Cell,
@@ -15,8 +15,8 @@ const FieldCell: React.FC<{
   const classes = [
     'cell',
     cell.open && '_open',
-    (!cell.withBomb && (cell.bombsNearby > 0)) && '_bombs-nearby',
-    cell.withBomb && '_bomb',
+    (cell.open && !cell.withBomb && (cell.bombsNearby > 0)) && '_bombs-nearby',
+    cell.open && cell.withBomb && '_bomb',
     !cell.open && cell.flag && '_flag',
   ].filter(Boolean).join(' ');
   return (

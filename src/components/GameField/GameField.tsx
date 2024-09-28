@@ -1,6 +1,6 @@
 import React from 'react';
 import { Cell, Field } from '../../types';
-import './GameField.css';
+import './GameField.scss';
 import FieldCell from '../FieldCell/FieldCell';
 
 const GameField: React.FC<{
