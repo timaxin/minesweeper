@@ -8,3 +8,9 @@ export type Cell = {
 };
 
 export type Field = Cell[][];
+
+export enum GameStatuses {
+  RUNNING = 'running',
+  VICTORY = 'victory',
+  GAME_OVER = 'gameOver',
+}
