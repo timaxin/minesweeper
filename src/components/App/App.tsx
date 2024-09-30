@@ -3,6 +3,8 @@ import './App.scss';
 import GameField from '../GameField/GameField';
 import { makeField, openNearbyEmptyCell, FieldSizeInit, findCell } from '../../utils';
 import { Cell, Field, GameStatuses } from '../../types';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 function App() {
   const [fieldSize] = useState(FieldSizeInit);
@@ -58,11 +60,11 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <Header/>
       <main>
         <GameField field={field} onCellClick={handleCellClick}></GameField>
       </main>
-      <footer></footer>
+      <Footer/>
     </div>
   );
 }
