@@ -62,6 +62,14 @@ function App() {
     <div className="App">
       <Header/>
       <main>
+        <aside>
+          <div className="legend">
+            <div className="legend__title">Legend</div>
+            <div className="legend__subtitle">Mouse clicks</div>
+            <div>Left button - open cell</div>
+            <div>Right button - add/remove flag</div>
+          </div>
+        </aside>
         <GameField field={field} onCellClick={handleCellClick}></GameField>
       </main>
       <Footer/>
