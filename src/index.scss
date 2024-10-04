@@ -1,3 +1,5 @@
+@import './variables';
+
 html {
   font-size: 14px;
 }
@@ -24,4 +26,22 @@ code {
 
 .center {
   text-align: center;
+}
+
+.button {
+  outline: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  &_new-game {
+    padding: 8px;
+    background-color: $button-color;
+    color: white;
+    border: 1px solid $button-color;
+    &:hover {
+      background-color: white;
+      color: $button-color;
+    }
+  }
 }

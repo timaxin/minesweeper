@@ -12,15 +12,19 @@ function App() {
   const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
   const resetGame = useCallback(() => setField(makeField(fieldSize.width, fieldSize.height)), [setField, fieldSize]);
 
+  const startNewGame = useCallback(() => {
+    resetGame();
+    setGameState(GameStatuses.RUNNING);
+  }, [resetGame])
+
   useEffect(() => {
     if (gameState === GameStatuses.RUNNING) return;
 
     setTimeout(() => {
       alert(gameState === GameStatuses.GAME_OVER ? 'Game Over!' : 'You win!');
-      resetGame();
-      setGameState(GameStatuses.RUNNING);
+      startNewGame();
     }, 50);
-  }, [gameState, resetGame]);
+  }, [gameState, startNewGame]);
 
   const handleCellClick = (cell: Cell, type: 'select' | 'flag') => {
     if (cell.open || gameState === GameStatuses.GAME_OVER || gameState === GameStatuses.VICTORY) return;
@@ -57,10 +61,11 @@ function App() {
     if (isVictory) setGameState(GameStatuses.VICTORY);
   };
 
-
   return (
     <div className="App">
-      <Header/>
+      <Header
+        onStartNewGame={startNewGame}
+      />
       <main>
         <aside>
           <div className="legend">
