@@ -8,5 +8,6 @@ module.exports = exports = {
   'rules': {
     'jsx-quotes': [ WARN, 'prefer-double' ],
     'quotes': [ WARN, 'single' ],
+    'object-curly-spacing': [WARN, 'always']
   }
 }

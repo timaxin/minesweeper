@@ -2,20 +2,24 @@ import React, { useState, useCallback, useEffect } from 'react';
 import './App.scss';
 import GameField from '../GameField/GameField';
 import { makeField, openNearbyEmptyCell, FieldSizeInit, findCell } from '../../utils';
-import { Cell, Field, GameStatuses } from '../../types';
+import { Cell, Field, GameStatuses, FieldSize as FieldSizeType } from '../../types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Settings from '../Settings/Settings';
 
 function App() {
-  const [fieldSize] = useState(FieldSizeInit);
+  const [fieldSize, setFieldSize] = useState<FieldSizeType>(FieldSizeInit);
   const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height));
   const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
-  const resetGame = useCallback(() => setField(makeField(fieldSize.width, fieldSize.height)), [setField, fieldSize]);
 
   const startNewGame = useCallback(() => {
-    resetGame();
+    setField(makeField(fieldSize.width, fieldSize.height));
     setGameState(GameStatuses.RUNNING);
-  }, [resetGame])
+  }, [fieldSize.width, fieldSize.height]);
+
+  useEffect(() => {
+    startNewGame();
+  }, [startNewGame, fieldSize]);
 
   useEffect(() => {
     if (gameState === GameStatuses.RUNNING) return;
@@ -61,21 +65,19 @@ function App() {
     if (isVictory) setGameState(GameStatuses.VICTORY);
   };
 
+  const handleSizeChange = (newSize: FieldSizeType) => {
+    setFieldSize(newSize);
+    startNewGame();
+  }
+
   return (
     <div className="App">
       <Header
         onStartNewGame={startNewGame}
       />
       <main>
-        <aside>
-          <div className="legend">
-            <div className="legend__title">Legend</div>
-            <div className="legend__subtitle">Mouse clicks</div>
-            <div>Left button - open cell</div>
-            <div>Right button - add/remove flag</div>
-          </div>
-        </aside>
-        <GameField field={field} onCellClick={handleCellClick}></GameField>
+        <Settings fieldSize={fieldSize} setFieldSize={handleSizeChange}/>
+        <GameField field={field} onCellClick={handleCellClick}/>
       </main>
       <Footer/>
     </div>

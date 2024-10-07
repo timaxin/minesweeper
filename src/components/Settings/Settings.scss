@@ -1,0 +1,22 @@
+.settings {
+  position: fixed;
+  width: 300px;
+  border-right: 2px solid lightgray;
+  inset: 0;
+  box-shadow: 5px 0 5px lightgray;
+  background-color: white;
+  z-index: 1;
+  &__block {
+    padding: 8px 12px;
+    &_submit {
+      margin-top: 12px;
+      color: white;
+      background-color: blue;
+      border-color: blue;
+      &:hover {
+        background-color: white;
+        color: blue;
+      }
+    }
+  }
+}

@@ -34,14 +34,26 @@ code {
   border-radius: 8px;
   font-size: 16px;
   transition: all 0.2s ease;
+  padding: 8px;
   &_new-game {
-    padding: 8px;
-    background-color: $button-color;
+    background-color: $new-game-button-color;
     color: white;
-    border: 1px solid $button-color;
+    border: 1px solid $new-game-button-color;
     &:hover {
       background-color: white;
-      color: $button-color;
+      color: $new-game-button-color;
     }
   }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 4px;
 }
