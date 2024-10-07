@@ -5,7 +5,7 @@ import './FieldCell.scss';
 const FieldCell: React.FC<{
   cell: Cell,
   onClick: React.MouseEventHandler,
-}> = ({cell, onClick}) => {
+}> = ({ cell, onClick }) => {
 
   const handleContextMenuClick: React.MouseEventHandler = event => {
     event.preventDefault();

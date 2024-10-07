@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Settings.scss';
 import { FieldSize } from '../../types';
+import SettingSwitch from '../SettingSwitch/SettingSwitch';
+
+const OPEN_CELL_TEXT = 'open cell';
+const FLAG_TEXT = 'add/remove flag';
 
 const Settings: React.FC <{
   fieldSize: FieldSize,
   setFieldSize: ({ width, height }: FieldSize) => void,
-}> = ({ fieldSize, setFieldSize }) => {
+  invertControls: boolean,
+  setInvertControls: (value: boolean) => void,
+}> = ({ fieldSize, setFieldSize, invertControls, setInvertControls }) => {
   let { width: defaultWidth, height: defaultHeight } = fieldSize;
   let { width, height } = fieldSize;
   const handleFieldSizeSubmit = () => {
     setFieldSize({ width, height });
   };
 
+  const mouseClickText = useCallback(() => {
+    return {
+      left: invertControls ? FLAG_TEXT : OPEN_CELL_TEXT,
+      right: invertControls ? OPEN_CELL_TEXT : FLAG_TEXT,
+    };
+  }, [invertControls]);
+
   return (
     <aside className="settings">
       <div className="settings__block">
         <div className="title">Legend</div>
         <div className="subtitle">Mouse clicks</div>
-        <div>Left button - open cell</div>
-        <div>Right button - add/remove flag</div>
+        <div>Left button - {mouseClickText().left}</div>
+        <div>Right button - {mouseClickText().right}</div>
       </div>
       <div className="settings__block">
         <div className="title">Field Size</div>
@@ -29,6 +42,13 @@ const Settings: React.FC <{
         <div>
           <button className="button settings__block_submit" type="button" onClick={handleFieldSizeSubmit}>Update settings</button>
         </div>
+      </div>
+      <div className="settings__block">
+        <div className="title">Invert controls</div>
+        <SettingSwitch
+          onClick={setInvertControls}
+          value={invertControls}
+        />
       </div>
     </aside>
   );
