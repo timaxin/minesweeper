@@ -16,3 +16,13 @@ export enum GameStatuses {
   VICTORY = 'victory',
   GAME_OVER = 'gameOver',
 }
+
+export interface SettingsState {
+  invertControls: boolean,
+  fieldSize: FieldSize,
+}
+
+export interface SettingsAction {
+  type: 'setFieldSize' | 'setInvertControls',
+  value: FieldSize | boolean,
+}

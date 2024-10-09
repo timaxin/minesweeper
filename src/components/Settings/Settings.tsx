@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import './Settings.scss';
 import { FieldSize } from '../../types';
 import SettingSwitch from '../SettingSwitch/SettingSwitch';
+import { useSettings, useSettingsDispatch } from '../SettingsProvider/SettingsProvider';
 
 const OPEN_CELL_TEXT = 'open cell';
 const FLAG_TEXT = 'add/remove flag';
@@ -9,10 +10,9 @@ const FLAG_TEXT = 'add/remove flag';
 const Settings: React.FC <{
   fieldSize: FieldSize,
   setFieldSize: ({ width, height }: FieldSize) => void,
-  invertControls: boolean,
-  setInvertControls: (value: boolean) => void,
-}> = ({ fieldSize, setFieldSize, invertControls, setInvertControls }) => {
-  let { width: defaultWidth, height: defaultHeight } = fieldSize;
+}> = ({ fieldSize, setFieldSize }) => {
+  const { invertControls } = useSettings();
+  const dispatch = useSettingsDispatch();
   let { width, height } = fieldSize;
   const handleFieldSizeSubmit = () => {
     setFieldSize({ width, height });
@@ -36,9 +36,9 @@ const Settings: React.FC <{
       <div className="settings__block">
         <div className="title">Field Size</div>
         <div className="subtitle">Width</div>
-        <input type="number" defaultValue={defaultWidth} onChange={val => width = +val.target.value}/>
+        <input type="number" defaultValue={fieldSize.width} onChange={val => width = +val.target.value}/>
         <div className="subtitle">Height</div>
-        <input type="number" defaultValue={defaultHeight} onChange={val => height = +val.target.value}/>
+        <input type="number" defaultValue={fieldSize.height} onChange={val => height = +val.target.value}/>
         <div>
           <button className="button settings__block_submit" type="button" onClick={handleFieldSizeSubmit}>Update settings</button>
         </div>
@@ -46,7 +46,13 @@ const Settings: React.FC <{
       <div className="settings__block">
         <div className="title">Invert controls</div>
         <SettingSwitch
-          onClick={setInvertControls}
+          onClick={value => {
+              dispatch({
+                type: 'setInvertControls',
+                value,
+              })
+            }
+          }
           value={invertControls}
         />
       </div>

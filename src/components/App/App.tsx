@@ -11,7 +11,6 @@ function App() {
   const [fieldSize, setFieldSize] = useState<FieldSizeType>(FieldSizeInit);
   const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height));
   const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
-  const [invertControls, setInvertControls] = useState<boolean>(false);
 
   const startNewGame = useCallback(() => {
     setField(makeField(fieldSize.width, fieldSize.height));
@@ -77,8 +76,8 @@ function App() {
         onStartNewGame={startNewGame}
       />
       <main>
-        <Settings fieldSize={fieldSize} setFieldSize={handleSizeChange} setInvertControls={setInvertControls} invertControls={invertControls}/>
-        <GameField field={field} onCellClick={handleCellClick} invertControls={invertControls}/>
+        <Settings fieldSize={fieldSize} setFieldSize={handleSizeChange}/>
+        <GameField field={field} onCellClick={handleCellClick}/>
       </main>
       <Footer/>
     </div>
