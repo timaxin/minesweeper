@@ -27,11 +27,11 @@ function adjustBombsCount({ field, bombsCount, bombsPutCount, width, height }: {
   height: number
 }) {
   while (bombsPutCount !== bombsCount) {
-    const randomWidth = Math.floor(Math.random() * width);
-    const randomHeight = Math.floor(Math.random() * height);
+    const randomWidth = Math.floor(Math.random() * (width - 1));
+    const randomHeight = Math.floor(Math.random() * (height - 1));
     let shouldBreak = false;
-    for (let y = randomHeight; y < width; y++) {
-      for (let x = randomWidth; x < height; x++) {
+    for (let y = randomHeight; y < height; y++) {
+      for (let x = randomWidth; x < width; x++) {
         if (bombsPutCount < bombsCount && !field[y][x].withBomb) {
           field[y][x].withBomb = true;
           bombsPutCount++;
@@ -51,8 +51,7 @@ function adjustBombsCount({ field, bombsCount, bombsPutCount, width, height }: {
   }
 }
 
-export const makeField = (width: number, height: number) => {
-  const bombsCount = 25;
+export const makeField = (width: number, height: number, bombsCount: number) => {
   let bombsPutCount = 0;
   const percentOfCellsWithBomb = (bombsCount / (width * height)) * 100;
 

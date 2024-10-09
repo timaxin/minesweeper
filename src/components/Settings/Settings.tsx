@@ -7,15 +7,10 @@ const OPEN_CELL_TEXT = 'open cell';
 const FLAG_TEXT = 'add/remove flag';
 
 const Settings: React.FC = () => {
-  const { invertControls, fieldSize } = useSettings();
+  const { invertControls, fieldSize, bombsCount: defaultBombsCount } = useSettings();
   const dispatch = useSettingsDispatch();
   let { width, height } = fieldSize;
-  const handleFieldSizeSubmit = () => {
-    dispatch({
-      type: 'setFieldSize',
-      value: { width, height }
-    });
-  };
+  let bombsCount = 0;
 
   const mouseClickText = useCallback(() => {
     return {
@@ -35,11 +30,28 @@ const Settings: React.FC = () => {
       <div className="settings__block">
         <div className="title">Field Size</div>
         <div className="subtitle">Width</div>
-        <input type="number" defaultValue={fieldSize.width} onChange={val => width = +val.target.value}/>
+        <input type="number" defaultValue={fieldSize.width} onChange={el => width = +el.target.value}/>
         <div className="subtitle">Height</div>
-        <input type="number" defaultValue={fieldSize.height} onChange={val => height = +val.target.value}/>
+        <input type="number" defaultValue={fieldSize.height} onChange={el => height = +el.target.value}/>
         <div>
-          <button className="button settings__block_submit" type="button" onClick={handleFieldSizeSubmit}>Update settings</button>
+          <button className="button settings__block_submit" type="button" onClick={() => {
+            dispatch({
+              type: 'setFieldSize',
+              value: { width, height },
+            });
+          }}>Update field size</button>
+        </div>
+      </div>
+      <div className="settings__block">
+        <div className="title">Bombs Count</div>
+        <input type="number" defaultValue={defaultBombsCount} onChange={el => bombsCount = +el.target.value}/>
+        <div>
+          <button className="button settings__block_submit" type="button" onClick={() => {
+            dispatch({
+              type: 'setBombsCount',
+              value: bombsCount,
+            });
+          }}>Update bombs count</button>
         </div>
       </div>
       <div className="settings__block">

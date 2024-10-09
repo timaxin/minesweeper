@@ -9,14 +9,14 @@ import Settings from '../Settings/Settings';
 import { useSettings } from '../SettingsProvider/SettingsProvider';
 
 function App() {
-  const { fieldSize } = useSettings();
-  const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height));
+  const { fieldSize, bombsCount } = useSettings();
+  const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height, bombsCount));
   const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
 
   const startNewGame = useCallback(() => {
-    setField(makeField(fieldSize.width, fieldSize.height));
+    setField(makeField(fieldSize.width, fieldSize.height, bombsCount));
     setGameState(GameStatuses.RUNNING);
-  }, [fieldSize.width, fieldSize.height]);
+  }, [fieldSize.width, fieldSize.height, bombsCount]);
 
   useEffect(() => {
     startNewGame();

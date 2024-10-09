@@ -6,6 +6,7 @@ const SettingsDispatchContext = createContext({} as Dispatch<SettingsAction>);
 
 const initialSettings = {
   invertControls: false,
+  bombsCount: 20,
   fieldSize: {
     width: 10,
     height: 10,
@@ -32,6 +33,11 @@ function settingsReducer(settings: SettingsState, action: SettingsAction) {
         ...settings,
         fieldSize: action.value as FieldSize,
       };
+    case 'setBombsCount':
+      return {
+        ...settings,
+        bombsCount: +action.value,
+      }
     default: {
       throw Error('Unknown action: ' + action.type);
     }

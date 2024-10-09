@@ -20,9 +20,10 @@ export enum GameStatuses {
 export interface SettingsState {
   invertControls: boolean,
   fieldSize: FieldSize,
+  bombsCount: number,
 }
 
 export interface SettingsAction {
-  type: 'setFieldSize' | 'setInvertControls',
-  value: FieldSize | boolean,
+  type: 'setFieldSize' | 'setInvertControls' | 'setBombsCount',
+  value: FieldSize | boolean | number | string,
 }
