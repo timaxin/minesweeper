@@ -1,14 +1,15 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './App.scss';
 import GameField from '../GameField/GameField';
-import { makeField, openNearbyEmptyCell, FieldSizeInit, findCell } from '../../utils';
-import { Cell, Field, GameStatuses, FieldSize as FieldSizeType } from '../../types';
+import { makeField, openNearbyEmptyCell, findCell } from '../../utils';
+import { Cell, Field, GameStatuses } from '../../types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Settings from '../Settings/Settings';
+import { useSettings } from '../SettingsProvider/SettingsProvider';
 
 function App() {
-  const [fieldSize, setFieldSize] = useState<FieldSizeType>(FieldSizeInit);
+  const { fieldSize } = useSettings();
   const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height));
   const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
 
@@ -65,18 +66,13 @@ function App() {
     if (isVictory) setGameState(GameStatuses.VICTORY);
   };
 
-  const handleSizeChange = (newSize: FieldSizeType) => {
-    setFieldSize(newSize);
-    startNewGame();
-  }
-
   return (
     <div className="App">
       <Header
         onStartNewGame={startNewGame}
       />
       <main>
-        <Settings fieldSize={fieldSize} setFieldSize={handleSizeChange}/>
+        <Settings/>
         <GameField field={field} onCellClick={handleCellClick}/>
       </main>
       <Footer/>

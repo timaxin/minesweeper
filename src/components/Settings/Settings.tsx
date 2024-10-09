@@ -1,21 +1,20 @@
 import React, { useCallback } from 'react';
 import './Settings.scss';
-import { FieldSize } from '../../types';
 import SettingSwitch from '../SettingSwitch/SettingSwitch';
 import { useSettings, useSettingsDispatch } from '../SettingsProvider/SettingsProvider';
 
 const OPEN_CELL_TEXT = 'open cell';
 const FLAG_TEXT = 'add/remove flag';
 
-const Settings: React.FC <{
-  fieldSize: FieldSize,
-  setFieldSize: ({ width, height }: FieldSize) => void,
-}> = ({ fieldSize, setFieldSize }) => {
-  const { invertControls } = useSettings();
+const Settings: React.FC = () => {
+  const { invertControls, fieldSize } = useSettings();
   const dispatch = useSettingsDispatch();
   let { width, height } = fieldSize;
   const handleFieldSizeSubmit = () => {
-    setFieldSize({ width, height });
+    dispatch({
+      type: 'setFieldSize',
+      value: { width, height }
+    });
   };
 
   const mouseClickText = useCallback(() => {

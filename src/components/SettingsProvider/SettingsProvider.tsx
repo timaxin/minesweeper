@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, useContext, useReducer } from 'react';
-import { SettingsAction, SettingsState } from '../../types';
+import { FieldSize, SettingsAction, SettingsState } from '../../types';
 
 const SettingsContext = createContext({} as SettingsState);
 const SettingsDispatchContext = createContext({} as Dispatch<SettingsAction>);
@@ -9,7 +9,7 @@ const initialSettings = {
   fieldSize: {
     width: 10,
     height: 10,
-  }
+  } as FieldSize
 };
 
 export function useSettings() {
@@ -26,6 +26,11 @@ function settingsReducer(settings: SettingsState, action: SettingsAction) {
       return {
         ...settings,
         invertControls: Boolean(action.value),
+      };
+    case 'setFieldSize':
+      return {
+        ...settings,
+        fieldSize: action.value as FieldSize,
       };
     default: {
       throw Error('Unknown action: ' + action.type);
