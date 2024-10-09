@@ -19,15 +19,55 @@ export const mapPosNearbyCells = [
   [-1, -1],
 ];
 
+function adjustBombsCount({ field, bombsCount, bombsPutCount, width, height }: {
+  field: Field,
+  bombsCount: number,
+  bombsPutCount: number,
+  width: number,
+  height: number
+}) {
+  while (bombsPutCount !== bombsCount) {
+    const randomWidth = Math.floor(Math.random() * width);
+    const randomHeight = Math.floor(Math.random() * height);
+    let shouldBreak = false;
+    for (let y = randomHeight; y < width; y++) {
+      for (let x = randomWidth; x < height; x++) {
+        if (bombsPutCount < bombsCount && !field[y][x].withBomb) {
+          field[y][x].withBomb = true;
+          bombsPutCount++;
+          shouldBreak = true;
+          break;
+        } else if (bombsPutCount > bombsCount && field[y][x].withBomb) {
+          field[y][x].withBomb = false;
+          bombsPutCount--;
+          shouldBreak = true;
+          break;
+        }
+      }
+      if (shouldBreak) {
+        break;
+      }
+    }
+  }
+}
+
 export const makeField = (width: number, height: number) => {
+  const bombsCount = 25;
+  let bombsPutCount = 0;
+  const percentOfCellsWithBomb = (bombsCount / (width * height)) * 100;
+
   const field = Array(height).fill([]).map((_, rowI) => {
     const row: Cell[] = Array(width).fill({}).map((_, cellI) => {
-      const randNum = Math.floor(Math.random() * 1000);
+      const randNum = Math.floor(Math.random() * 100);
 
+      const withBomb = randNum < percentOfCellsWithBomb;
+      if (withBomb) {
+        bombsPutCount++;
+      }
       return ({
         x: cellI,
         y: rowI,
-        withBomb: randNum < 400 && randNum > 200,
+        withBomb,
         open: false,
         bombsNearby: 0,
         flag: false,
@@ -36,6 +76,10 @@ export const makeField = (width: number, height: number) => {
 
     return row;
   });
+
+  if (bombsPutCount !== bombsCount) {
+    adjustBombsCount({ field, bombsCount, bombsPutCount, width, height });
+  }
 
   field.forEach((row) => {
     row.forEach((cell) => {

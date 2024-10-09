@@ -65,7 +65,7 @@ describe('utils', () => {
     });
 
     it('build a field with bombs in place', () => {
-      const field = makeField(5, 5);
+      const field = makeField(10, 10);
       expect(field).toEqual(expectedTestField);
     });
   });
@@ -74,7 +74,7 @@ describe('utils', () => {
     const createCell = (x: number, y: number, open = false, withBomb = false, bombsNearby = 0, flag = false): Cell => ({
       x, y, open, withBomb, bombsNearby, flag,
     });
-    const testField = makeField(3, 3);
+    const testField = makeField(10, 10);
     it('doesn\'t open a cell if it\'s already open', () => {
       const startCell = createCell(1, 1, true);
       openNearbyEmptyCell(startCell, testField);
