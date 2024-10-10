@@ -3,7 +3,7 @@ import './Header.scss';
 
 const Header: React.FC <{
   onStartNewGame: () => void,
-}> = ({onStartNewGame}) => {
+}> = ({ onStartNewGame }) => {
   return (
     <header className="header">
       <h1 className="center">Minesweeper game</h1>
@@ -12,6 +12,6 @@ const Header: React.FC <{
       </div>
     </header>
   );
-}
+};
 
 export default Header;

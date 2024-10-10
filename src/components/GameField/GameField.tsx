@@ -37,6 +37,6 @@ const GameField: React.FC<{
       </div>
     </div>
   );
-}
+};
 
 export default GameField;

@@ -37,7 +37,7 @@ function settingsReducer(settings: SettingsState, action: SettingsAction) {
       return {
         ...settings,
         bombsCount: +action.value,
-      }
+      };
     default: {
       throw Error('Unknown action: ' + action.type);
     }
