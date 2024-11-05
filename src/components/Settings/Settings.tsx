@@ -60,30 +60,38 @@ const Settings: React.FC = () => {
 
   return (
     <aside className="settings">
-      <div className="settings__block">
+      <div className="settings__section">
         <div className="title">Legend</div>
-        <div className="subtitle">Mouse clicks</div>
-        <div>Left button - {mouseClickText.left}</div>
-        <div>Right button - {mouseClickText.right}</div>
-      </div>
-      <div className="settings__block">
-        <div className="title">Field Size</div>
-        <div className="subtitle">Width</div>
-        <input type="number" defaultValue={fieldSize.width} onChange={el => setLocalFieldSize({ width: +el.target.value, height })}/>
-        {errors.width && <div className="error">{errors.width}</div>}
-        <div className="subtitle">Height</div>
-        <input type="number" defaultValue={fieldSize.height} onChange={el => setLocalFieldSize({ width, height: +el.target.value })}/>
-        {errors.height && <div className="error">{errors.height}</div>}
-      </div>
-      <div className="settings__block">
-        <div className="title">Bombs Count</div>
-        <input type="number" defaultValue={defaultBombsCount} onChange={el => setLocalBombsCount(+el.target.value)}/>
-        {errors.bombsCount && <div className="error">{errors.bombsCount}</div>}
-        <div>
-          <button className="button settings__block_submit" type="button" onClick={handleSettingsChange}>Update field settings</button>
+        <div className="settings__block">
+          <div className="subtitle">Mouse clicks</div>
+          <div>Left button - {mouseClickText.left}</div>
+          <div>Right button - {mouseClickText.right}</div>
         </div>
       </div>
-      <div className="settings__block">
+      <div className="settings__section">
+        <div className="title">Field Size</div>
+        <div className="settings__block">
+          <div className="subtitle">Width</div>
+          <input type="number" defaultValue={fieldSize.width} onChange={el => setLocalFieldSize({ width: +el.target.value, height })}/>
+          {errors.width && <div className="error">{errors.width}</div>}
+        </div>
+        <div className="settings__block">
+          <div className="subtitle">Height</div>
+          <input type="number" defaultValue={fieldSize.height} onChange={el => setLocalFieldSize({ width, height: +el.target.value })}/>
+          {errors.height && <div className="error">{errors.height}</div>}
+        </div>
+      </div>
+      <div className="settings__section">
+        <div className="title">Bombs Count</div>
+          <div className="settings__block">
+          <input type="number" defaultValue={defaultBombsCount} onChange={el => setLocalBombsCount(+el.target.value)}/>
+          {errors.bombsCount && <div className="error">{errors.bombsCount}</div>}
+        </div>
+      </div>
+      <div className="settings__submit">
+        <button className="button button_submit" type="button" onClick={handleSettingsChange}>Update field settings</button>
+      </div>
+      <div className="settings__section">
         <div className="title">Invert controls</div>
         <SettingSwitch
           onClick={value => {

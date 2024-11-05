@@ -44,6 +44,15 @@ code {
       color: $new-game-button-color;
     }
   }
+  &_submit {
+    color: white;
+    background-color: blue;
+    border-color: blue;
+    &:hover {
+      background-color: white;
+      color: blue;
+    }
+  }
 }
 
 .title {

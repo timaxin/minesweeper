@@ -6,17 +6,15 @@
   box-shadow: 5px 0 5px lightgray;
   background-color: white;
   z-index: 1;
-  &__block {
+  &__section {
     padding: 8px 12px;
-    &_submit {
-      margin-top: 12px;
-      color: white;
-      background-color: blue;
-      border-color: blue;
-      &:hover {
-        background-color: white;
-        color: blue;
-      }
+  }
+  &__block {
+    & ~ & {
+      margin-top: 8px;
     }
+  }
+  &__submit {
+    padding: 0 12px 8px;
   }
 }

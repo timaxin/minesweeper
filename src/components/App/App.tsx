@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import './App.scss';
 import GameField from '../GameField/GameField';
 import { makeField, openNearbyEmptyCell, findCell } from '../../utils';
@@ -9,6 +9,7 @@ import Settings from '../Settings/Settings';
 import { useSettings } from '../SettingsProvider/SettingsProvider';
 
 function App() {
+  const appStarted: React.MutableRefObject<boolean> = useRef(false);
   const { fieldSize, bombsCount } = useSettings();
   const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height, bombsCount));
   const [gameState, setGameState] = useState<GameStatus>(GameStatus.RUNNING);
@@ -18,9 +19,13 @@ function App() {
     setGameState(GameStatus.RUNNING);
   }, [fieldSize.width, fieldSize.height, bombsCount]);
 
-  useEffect(() => { // Merge two useEffects, but check that they both start a new game simultaneously
-    startNewGame();
-  }, [startNewGame, fieldSize]);
+  useEffect(() => {
+    if (appStarted.current) {
+      startNewGame();
+    } else {
+      appStarted.current = true;
+    }
+  }, [startNewGame]);
 
   useEffect(() => {
     if (gameState === GameStatus.RUNNING) return;
@@ -78,7 +83,7 @@ function App() {
   return (
     <div className="App">
       <Header
-        onStartNewGame={startNewGame}
+        startNewGame={startNewGame}
       />
       <main>
         <Settings/>
