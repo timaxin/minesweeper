@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import './App.scss';
 import GameField from '../GameField/GameField';
 import { makeField, openNearbyEmptyCell, findCell } from '../../utils';
-import { Cell, Field, GameStatuses } from '../../types';
+import { Cell, Field, GameStatus } from '../../types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Settings from '../Settings/Settings';
@@ -11,28 +11,35 @@ import { useSettings } from '../SettingsProvider/SettingsProvider';
 function App() {
   const { fieldSize, bombsCount } = useSettings();
   const [field, setField] = useState<Field>(() => makeField(fieldSize.width, fieldSize.height, bombsCount));
-  const [gameState, setGameState] = useState<GameStatuses>(GameStatuses.RUNNING);
+  const [gameState, setGameState] = useState<GameStatus>(GameStatus.RUNNING);
 
   const startNewGame = useCallback(() => {
     setField(makeField(fieldSize.width, fieldSize.height, bombsCount));
-    setGameState(GameStatuses.RUNNING);
+    setGameState(GameStatus.RUNNING);
   }, [fieldSize.width, fieldSize.height, bombsCount]);
 
-  useEffect(() => {
+  useEffect(() => { // Merge two useEffects, but check that they both start a new game simultaneously
     startNewGame();
   }, [startNewGame, fieldSize]);
 
   useEffect(() => {
-    if (gameState === GameStatuses.RUNNING) return;
+    if (gameState === GameStatus.RUNNING) return;
 
     setTimeout(() => {
-      alert(gameState === GameStatuses.GAME_OVER ? 'Game Over!' : 'You win!');
+      alert(gameState === GameStatus.GAME_OVER ? 'Game Over!' : 'You win!');
       startNewGame();
     }, 50);
   }, [gameState, startNewGame]);
 
-  const handleCellClick = (cell: Cell, type: 'select' | 'flag') => {
-    if (cell.open || gameState === GameStatuses.GAME_OVER || gameState === GameStatuses.VICTORY) return;
+  const checkForVictory = (newField: Field): void => {
+    const isVictory = newField.every(row => row.every(col => (col.open || col.flag)));
+    if (isVictory) {
+      setGameState(GameStatus.VICTORY);
+    }
+  };
+
+  const handleCellClick = (cell: Cell, type: 'select' | 'flag'): void => {
+    if (cell.open || gameState === GameStatus.GAME_OVER || gameState === GameStatus.VICTORY) return;
 
     const newField = [...field].map(
       row => [...row].map(_cell => ({ ..._cell }))
@@ -43,6 +50,7 @@ function App() {
     if (type === 'flag') {
       targetCell.flag = !targetCell.flag;
       setField(newField);
+      checkForVictory(newField);
       return;
     }
 
@@ -54,16 +62,17 @@ function App() {
 
     targetCell.open = true;
 
-    if (targetCell.bombsNearby === 0 && !targetCell.withBomb) openNearbyEmptyCell(targetCell, newField);
+    if (targetCell.bombsNearby === 0 && !targetCell.withBomb) {
+      openNearbyEmptyCell(targetCell, newField);
+    }
     setField(newField);
 
     if (targetCell.withBomb) {
-      setGameState(GameStatuses.GAME_OVER);
+      setGameState(GameStatus.GAME_OVER);
       return;
     }
 
-    const isVictory = newField.every(row => row.every(col => (col.open || col.flag)));
-    if (isVictory) setGameState(GameStatuses.VICTORY);
+    checkForVictory(newField);
   };
 
   return (

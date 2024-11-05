@@ -14,7 +14,7 @@ export type Field = Cell[][];
 
 export type FieldSize = { width: number, height: number };
 
-export enum GameStatuses {
+export enum GameStatus {
   RUNNING = 'running',
   VICTORY = 'victory',
   GAME_OVER = 'gameOver',
