@@ -25,9 +25,9 @@
     <br />
     <a href="https://github.com/timaxin/sapper-ts">View Demo</a>
     ·
-    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=bug&template=bug_report.md">Report Bug</a>
     ·
-    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=enhancement&template=feature_request.md">Request Feature</a>
   </p>
 </div>
 
