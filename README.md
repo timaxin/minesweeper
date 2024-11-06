@@ -13,15 +13,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/timaxin/sapper-ts">
-    <img src="src/assets/bomb.png" alt="Logo" width="80" height="80">
+    <img src="public/logo192.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Minesweeper Game</h3>
 
   <p align="center">
     A simple minesweeper game built on typed React
-    <br />
-    <a href="https://github.com/timaxin/sapper-ts"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/timaxin/sapper-ts">View Demo</a>
