@@ -10,6 +10,7 @@
 
 
 <!-- PROJECT LOGO -->
+<!--suppress ALL -->
 <br />
 <div align="center">
   <a href="https://github.com/timaxin/sapper-ts">
@@ -65,7 +66,7 @@
 I do like playing minesweeper on PC and mobile platforms in different variations
 with various options, like accordions, controls inversion and different themes.
 
-This project is just my variation on this classic game.
+This project is just my variation of this classic game.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
