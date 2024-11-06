@@ -9,11 +9,18 @@ const OPEN_CELL_TEXT = 'open cell';
 const FLAG_TEXT = 'add/remove flag';
 
 const Settings: React.FC = () => {
-  const { invertControls, fieldSize, bombsCount: defaultBombsCount } = useSettings();
+  const { invertControls, fieldSize, bombsCount: defaultBombsCount, opened: settingsOpened } = useSettings();
   const dispatch = useSettingsDispatch();
   let [{ width, height }, setLocalFieldSize] = useState(fieldSize);
   let [bombsCount, setLocalBombsCount] = useState(defaultBombsCount);
   const [errors, setErrors] = useState<SettingsErrors>({});
+
+  const closeSettings = () => {
+    dispatch({
+      type: 'setOpened',
+      value: false,
+    });
+  };
 
   const settingsSchema = useMemo(() => z.object({
     width: z.number().min(3, 'Width must be at least 3').max(30, 'Width must not exceed 30'),
@@ -59,7 +66,9 @@ const Settings: React.FC = () => {
   }, [invertControls]);
 
   return (
-    <aside className="settings">
+    <aside inert={settingsOpened ? undefined : ''} className={`settings ${settingsOpened ? 'settings_opened' : ''}`}>
+      <div tabIndex={0} className="cross toggle-button settings_button-close" onClick={closeSettings}>
+      </div>
       <div className="settings__section">
         <div className="title">Legend</div>
         <div className="settings__block">

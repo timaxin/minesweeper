@@ -24,10 +24,11 @@ export type SettingsState = {
   invertControls: boolean,
   fieldSize: FieldSize,
   bombsCount: number,
+  opened: boolean,
 }
 
 export type SettingsAction = {
-  type: 'setFieldSize' | 'setInvertControls' | 'setBombsCount',
+  type: 'setFieldSize' | 'setInvertControls' | 'setBombsCount' | 'setOpened',
   value: FieldSize | boolean | number | string,
 }
 

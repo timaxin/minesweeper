@@ -1,11 +1,13 @@
 .settings {
   position: fixed;
   width: 300px;
-  border-right: 2px solid lightgray;
   inset: 0;
-  box-shadow: 5px 0 5px lightgray;
   background-color: white;
   z-index: 1;
+  transform: translateX(-100%);
+  transition-property: transform, box-shadow;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out;
   &__section {
     padding: 8px 12px;
   }
@@ -16,5 +18,15 @@
   }
   &__submit {
     padding: 0 12px 8px;
+  }
+  &_opened {
+    border-right: 2px solid lightgray;
+    box-shadow: 5px 0 5px lightgray;
+    transform: translateX(0);
+  }
+  &_button-close {
+    position: absolute;
+    right: 13px;
+    top: 13px;
   }
 }

@@ -1,5 +1,10 @@
 @import './variables';
 
+*:focus {
+  outline: 2px solid #000088;
+  outline-offset: 2px;
+}
+
 html {
   font-size: 14px;
 }
@@ -29,11 +34,12 @@ code {
 }
 
 .button {
-  outline: none;
   cursor: pointer;
   border-radius: 8px;
   font-size: 16px;
-  transition: all 0.2s ease;
+  transition-property: background-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
   padding: 8px;
   &_new-game {
     background-color: $new-game-button-color;
@@ -47,6 +53,7 @@ code {
   &_submit {
     color: white;
     background-color: blue;
+    border-width: 1px;
     border-color: blue;
     &:hover {
       background-color: white;
@@ -70,4 +77,49 @@ code {
 .error {
   color: red;
   padding: 4px 0 8px;
+}
+
+.toggle-button {
+  width: 32px;
+  height: 32px;
+  transition-property: transform, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  opacity: 0.7;
+  transform: scale(0.9);
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cross {
+  &:before, &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+    border-radius: 2px;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4px;
+  & > div {
+    height: 4px;
+    border-radius: 3px;
+    background-color: #000;
+  }
 }

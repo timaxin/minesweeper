@@ -1,7 +1,14 @@
 .header {
   padding: 16px;
+  position: relative;
 }
 
 .new-game {
   padding-top: 16px;
+}
+
+.header-open-settings {
+  position: absolute;
+  top: 16px;
+  left: 16px;
 }

@@ -10,7 +10,8 @@ const initialSettings = {
   fieldSize: {
     width: 10,
     height: 10,
-  } as FieldSize
+  } as FieldSize,
+  opened: true,
 };
 
 export function useSettings() {
@@ -21,7 +22,7 @@ export function useSettingsDispatch() {
   return useContext(SettingsDispatchContext);
 }
 
-function settingsReducer(settings: SettingsState, action: SettingsAction) {
+function settingsReducer(settings: SettingsState, action: SettingsAction): SettingsState {
   switch (action.type) {
     case 'setInvertControls':
       return {
@@ -37,6 +38,11 @@ function settingsReducer(settings: SettingsState, action: SettingsAction) {
       return {
         ...settings,
         bombsCount: +action.value,
+      };
+    case 'setOpened':
+      return {
+        ...settings,
+        opened: Boolean(action.value),
       };
     default: {
       throw Error('Unknown action: ' + action.type);
