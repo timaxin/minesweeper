@@ -13,7 +13,7 @@
 <!--suppress ALL -->
 <br />
 <div align="center">
-  <a href="https://github.com/timaxin/sapper-ts">
+  <a href="https://github.com/timaxin/minesweeper">
     <img src="public/logo192.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -23,11 +23,11 @@
     A simple minesweeper game built on typed React
     <br />
     <br />
-    <a href="https://github.com/timaxin/sapper-ts">View Demo</a>
+    <a href="https://github.com/timaxin/minesweeper">View Demo</a>
     ·
-    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=bug&template=bug_report.md">Report Bug</a>
+    <a href="https://github.com/timaxin/minesweeper/issues/new?labels=bug&template=bug_report.md">Report Bug</a>
     ·
-    <a href="https://github.com/timaxin/sapper-ts/issues/new?labels=enhancement&template=feature_request.md">Request Feature</a>
+    <a href="https://github.com/timaxin/minesweeper/issues/new?labels=enhancement&template=feature_request.md">Request Feature</a>
   </p>
 </div>
 
@@ -97,7 +97,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/timaxin/sapper-ts.git
+   git clone https://github.com/timaxin/minesweeper.git
    ```
 2. Install NPM packages
    ```sh
@@ -105,7 +105,7 @@ This is an example of how to list things you need to use the software and how to
    ```
 3. Change git remote url to avoid accidental pushes to base project
    ```sh
-   git remote set-url origin github_username/sapper-ts.git
+   git remote set-url origin github_username/minesweeper.git
    git remote -v # confirm the changes
    ```
 
@@ -160,7 +160,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Tsimafei Yefimenka - [LinkedIn][linkedin-url] - timaxin@gmail.com
 
-Project Link: [https://github.com/timaxin/sapper-ts](https://github.com/timaxin/sapper-ts)
+Project Link: [https://github.com/timaxin/minesweeper](https://github.com/timaxin/minesweeper)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -168,16 +168,16 @@ Project Link: [https://github.com/timaxin/sapper-ts](https://github.com/timaxin/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/timaxin/sapper-ts.svg?style=for-the-badge
-[contributors-url]: https://github.com/timaxin/sapper-ts/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/timaxin/sapper-ts.svg?style=for-the-badge
-[forks-url]: https://github.com/timaxin/sapper-ts/network/members
-[stars-shield]: https://img.shields.io/github/stars/timaxin/sapper-ts.svg?style=for-the-badge
-[stars-url]: https://github.com/timaxin/sapper-ts/stargazers
-[issues-shield]: https://img.shields.io/github/issues/timaxin/sapper-ts.svg?style=for-the-badge
-[issues-url]: https://github.com/timaxin/sapper-ts/issues
-[license-shield]: https://img.shields.io/github/license/timaxin/sapper-ts.svg?style=for-the-badge
-[license-url]: https://github.com/timaxin/sapper-ts/blob/main/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/timaxin/minesweeper.svg?style=for-the-badge
+[contributors-url]: https://github.com/timaxin/minesweeper/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/timaxin/minesweeper.svg?style=for-the-badge
+[forks-url]: https://github.com/timaxin/minesweeper/network/members
+[stars-shield]: https://img.shields.io/github/stars/timaxin/minesweeper.svg?style=for-the-badge
+[stars-url]: https://github.com/timaxin/minesweeper/stargazers
+[issues-shield]: https://img.shields.io/github/issues/timaxin/minesweeper.svg?style=for-the-badge
+[issues-url]: https://github.com/timaxin/minesweeper/issues
+[license-shield]: https://img.shields.io/github/license/timaxin/minesweeper.svg?style=for-the-badge
+[license-url]: https://github.com/timaxin/minesweeper/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/timaxin
 [product-screenshot]: public/product_screenshot.png
