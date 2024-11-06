@@ -62,8 +62,10 @@
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+I do like playing minesweeper on PC and mobile platforms in different variations
+with various options, like accordions, controls inversion and different themes.
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+This project is just my variation on this classic game.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
