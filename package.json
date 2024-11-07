@@ -1,6 +1,7 @@
 {
   "name": "minesweeper",
   "version": "0.1.0",
+  "homepage": "https://timaxin.github.io/minesweeper",
   "private": true,
   "scripts": {
     "start": "react-app-rewired start",
