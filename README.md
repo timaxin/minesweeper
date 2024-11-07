@@ -68,9 +68,6 @@ with various options, like accordions, controls inversion and different themes.
 
 This project is just my variation of this classic game.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 [![React][React.js]][React-url]  
