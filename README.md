@@ -23,7 +23,7 @@
     A simple minesweeper game built on typed React
     <br />
     <br />
-    <a href="https://github.com/timaxin/minesweeper">View Demo</a>
+    <a href="https://timaxin.github.io/minesweeper/">View Demo</a>
     ·
     <a href="https://github.com/timaxin/minesweeper/issues/new?labels=bug&template=bug_report.md">Report Bug</a>
     ·
