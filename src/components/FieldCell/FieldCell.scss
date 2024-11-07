@@ -25,6 +25,7 @@ $bombs-count-colors: (
     text-align: center;
     font-weight: 700;
     background-color: $cell-color;
+    line-height: 25px;
 }
 
 .cell:not(._open) {
