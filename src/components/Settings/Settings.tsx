@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import './Settings.scss';
 import SettingSwitch from '../SettingSwitch/SettingSwitch';
 import { useSettings, useSettingsDispatch } from '../SettingsProvider/SettingsProvider';
 import { z } from 'zod';
-import { SettingsZodIssue, SettingsErrors, SettingsConfigKeys } from '../../types';
+import { SettingsZodIssue, SettingsErrors, SettingsConfigKeys, FieldSize, SettingsState } from '../../types';
+import compareUsingJSON from '../../utils/compareUsingJSON';
 
 const OPEN_CELL_TEXT = 'open cell';
 const FLAG_TEXT = 'add/remove flag';
@@ -11,9 +12,19 @@ const FLAG_TEXT = 'add/remove flag';
 const Settings: React.FC = () => {
   const { invertControls, fieldSize, bombsCount: defaultBombsCount, opened: settingsOpened } = useSettings();
   const dispatch = useSettingsDispatch();
-  let [{ width, height }, setLocalFieldSize] = useState(fieldSize);
-  let [bombsCount, setLocalBombsCount] = useState(defaultBombsCount);
+  const previousSettings = useRef<Pick<SettingsState, 'fieldSize' | 'bombsCount'>>({ fieldSize, bombsCount: defaultBombsCount });
+  let [settingsPersist, setSettingsPersist] = useState<boolean>(false);
+
+  let [{ width, height }, setLocalFieldSize] = useState<FieldSize>(fieldSize);
+  let [bombsCount, setLocalBombsCount] = useState<number>(defaultBombsCount);
   const [errors, setErrors] = useState<SettingsErrors>({});
+
+  useEffect(() => {
+    setSettingsPersist(compareUsingJSON({
+      fieldSize: { width, height },
+      bombsCount,
+    }, previousSettings.current));
+  }, [width, height, bombsCount]);
 
   const closeSettings = () => {
     dispatch({
@@ -39,6 +50,11 @@ const Settings: React.FC = () => {
         type: 'setBombsCount',
         value: parsedSettingsSchema.bombsCount,
       });
+      setSettingsPersist(true);
+      previousSettings.current = {
+        fieldSize: { width, height },
+        bombsCount,
+      };
       setErrors({
         width: null,
         height: null,
@@ -98,7 +114,7 @@ const Settings: React.FC = () => {
         </div>
       </div>
       <div className="settings__submit">
-        <button className="button button_submit" type="button" onClick={handleSettingsChange}>Update field settings</button>
+        <button className="button button_submit" disabled={settingsPersist} type="button" onClick={handleSettingsChange}>Update field settings</button>
       </div>
       <div className="settings__section">
         <div className="title">Invert controls</div>
